@@ -1,0 +1,29 @@
+
+IF NOT EXISTS create table category(
+    id serial primary key,
+    category_name varchar    
+);
+
+
+IF NOT EXISTS create table fuel(
+    id serial primary key,
+    fuel_name varchar
+);
+
+IF NOT EXISTS create table gas_station(
+    id serial primary key,
+    name varchar,
+    category_id int DEFAULT NULL,
+    FOREIGN KEY (category_id) REFERENCES category (id)
+);
+
+
+
+IF NOT EXISTS CREATE TABLE fuel_value(
+    id serial primary key,
+    fuel_id int DEFAULT NULL,
+    gas_station_id int DEFAULT NULL,
+    price float DEFAULT NULL,    
+    FOREIGN KEY (fuel_id) REFERENCES fuel (id),
+    FOREIGN KEY (gas_station_id) REFERENCES gas_station (id)
+);
